@@ -1,7 +1,8 @@
 import { FaRegBookmark, FaShareAlt, FaRegEye, FaStar, FaRegStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
-  const { title, details, image_url, author, total_view, rating, tags } = news;
+  const { title, details, image_url, author, total_view, rating, tags ,id} = news;
 
   // Function to render stars based on rating number
   const renderStars = (ratingNum) => {
@@ -66,9 +67,9 @@ const NewsCard = ({ news }) => {
           {details.length > 250 ? (
             <>
               {details.slice(0, 250)}... 
-              <span className="text-orange-500 font-bold cursor-pointer hover:underline ml-1">
+              <Link to={`/news-details/${id}`} className="text-orange-500 font-bold cursor-pointer hover:underline ml-1">
                 Read More
-              </span>
+              </Link>
             </>
           ) : details}
         </p>

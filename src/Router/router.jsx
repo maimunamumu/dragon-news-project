@@ -7,6 +7,7 @@ import News from "../Component/pages/News";
 import Login from "../Component/pages/Login";
 import Register from "../Component/pages/Register";
 import AuthLayout from "../Layout/AuthLayout";
+import NewsDetails from "../Component/pages/NewsDetails";
 
 
 const router=createBrowserRouter([
@@ -39,7 +40,9 @@ const router=createBrowserRouter([
     ]
    },
       {
-        path:'/news',element:<h1>news</h1>
+        path:'/news-details/:id',
+        element:<NewsDetails></NewsDetails>,
+        loader: ()=> fetch("/news.json")
       }
 ])
 
