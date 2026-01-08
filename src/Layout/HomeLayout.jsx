@@ -11,6 +11,7 @@ const HomeLayout = () => {
         <div>
             <header>
                 <Header></Header>
+               
                <section className='mx-auto container px-12 py-3'> <LatestNews></LatestNews></section>
                <nav className='mx-auto container px-12 py-3'>
                 <Navbar></Navbar>

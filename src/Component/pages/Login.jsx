@@ -1,12 +1,15 @@
 
 
-import { use } from 'react';
-import { Link } from 'react-router';
+import { use, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 
 
 
 const Login = () => {
+  const [error,setError]=useState("")
+  const location=useLocation();
+  const navigate=useNavigate()
   const {signIn}=use(AuthContext);
   console.log(signIn);
   
@@ -15,17 +18,18 @@ const Login = () => {
  const form =e.target;
  const email=form.email.value;
  const password=form.password.value;
- console.log(email,password);
+
  signIn(email,password)
  .then(result=>{
     const user=result.user;
-    console.log(user);
+
+    navigate(`${location.state? location.state:"/"}`)
     
  })
  .catch((error) => {
     
     const errorMessage = error.message;
-    alert(errorMessage)
+ setError(errorMessage)
   });
  
     }
@@ -44,6 +48,7 @@ const Login = () => {
           <label className="label font-semibold text-black">Password</label>
           <input type="password" className="input" placeholder="Enter Your Password" name='password' required />
           <div><a className="link link-hover">Forgot password?</a></div>
+          {error&& <p className='text-red-600'>{error}</p>}
           <button type="submit"className="btn btn-neutral mt-4">Login</button>
         </fieldset>
         <h2 className='text-center text-sm  text-gray-400'>Dont’t Have An Account ?<Link to="/auth/register"><span className='text-red-700'> Register</span></Link></h2>
